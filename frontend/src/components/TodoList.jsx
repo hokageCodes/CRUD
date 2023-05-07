@@ -10,10 +10,10 @@ const TodoList = () => {
 
     const loadTodos = async () => {
         try {
-            const todos = await getAllTodos();
+            const todos = await getAllTodos(currentUser.id);
             setTodos(todos);
         } catch (error) {
-            console.log(error);
+            // console.log(error);
         }
     };
 

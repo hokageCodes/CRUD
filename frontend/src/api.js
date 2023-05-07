@@ -2,9 +2,9 @@ const API_BASE_URL = 'http://localhost:5000/api/todos';
 import axios from 'axios';
 
 const getToken = () => {
-    const token = localStorage.getItem('authToken');
-    if (token) {
-        return `Bearer ${token}`;
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user.token) {
+        return `Bearer ${user.token}`;
     } else {
         return '';
     }
@@ -44,16 +44,22 @@ export const registerUser= async (email, password, name) => {
 }
 
 export const getAllTodos = async () => {
+   try{
     const response = await fetch(`${API_BASE_URL}`, {
         headers: {
             Authorization: getToken(),
         },
     });
+    console.log('dd', response.ok)
     if (response.ok) {
         return await response.json();
     } else {
         throw new Error('Error retrieving todos');
     }
+}catch(error) {
+    console.log(error);
+    throw new Error('Error retrieving todos');
+}
 };
 
 export const createTodo = async (title, description, id) => {

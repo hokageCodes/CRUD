@@ -2,16 +2,17 @@ const express = require("express");
 const router = express.Router();
 const { check } = require("express-validator");
 const todoController = require("../controllers/todoController");
+const authMiddleware = require("../middleware/authMiddleware");
 
 // @route    GET api/todos
 // @desc     Get all to-do items for the logged in user
 // @access   Private
-router.get("/", todoController.getAllTodos);
+router.get("/", authMiddleware, todoController.getAllTodos);
 
 // @route    GET api/todos/:id
 // @desc     Get a single to-do item by ID
 // @access   Private
-router.get("/:id", todoController.getTodoById);
+router.get("/:id", authMiddleware, todoController.getTodoById);
 
 // @route    POST api/todos
 // @desc     Create a new to-do item
@@ -25,6 +26,7 @@ router.post(
             check("user", "User id is required").not().isEmpty(),
         ]
     ],
+    authMiddleware,
     todoController.createTodo
 );
 
@@ -39,12 +41,13 @@ router.put(
             check("description", "Description is required").not().isEmpty()
         ]
     ],
+    authMiddleware,
     todoController.updateTodo
 );
 
 // @route    DELETE api/todos/:id
 // @desc     Delete a to-do item by ID
 // @access   Private
-router.delete("/:id", todoController.deleteTodo);
+router.delete("/:id", authMiddleware, todoController.deleteTodo);
 
 module.exports = router;

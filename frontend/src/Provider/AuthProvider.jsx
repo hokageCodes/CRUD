@@ -8,6 +8,7 @@ export function useAuth() {
 }
 
 
+// eslint-disable-next-line react/prop-types
 export function AuthProvider({ children }) {
   const navigate  = useNavigate();
     const [currentUser, setCurrentUser] = useState(JSON.parse(localStorage.getItem('user')));
@@ -35,6 +36,9 @@ export function AuthProvider({ children }) {
     console.log('location',location.href.split('/').pop())
     if(currentUser && location.href.split('/').pop() === 'login'){
       navigate('/')
+    }
+    if(!currentUser && location.href.split('/').pop() !== 'login'){
+      navigate('/login');
     }
   })
 

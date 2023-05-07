@@ -2,24 +2,26 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../App.css'
+import { useAuth } from '../Provider/AuthProvider';
 
 const SignupPage = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-
+const { signup} = useAuth()
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/signup', {
-        name,
-        email,
-        password,
-      });
+    await signup(email, password, name);
 
-      console.log(response.data);
+    //   const response = await axios.post('http://localhost:5000/api/auth/signup', {
+    //     name,
+    //     email,
+    //     password,
+    //   });
+
+    //   console.log(response.data);
     } catch (err) {
       setError(err.response.data.error);
     }

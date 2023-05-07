@@ -9,7 +9,7 @@ exports.getAllTodos = async (req, res) => {
         res.json(todos);
     } catch (err) {
         console.log(err.message);
-        res.status(500).send("Server error");
+        res.status(500).send({error: "Server error"});
     }
 };
 
@@ -18,7 +18,7 @@ exports.getTodoById = async (req, res) => {
     try {
         const todo = await Todo.findOne({
             _id: req.params.id,
-            user: req.user.id
+            user: req.body.id
         });
         if (!todo) {
             return res.status(404).json({ error: "Todo not found" });
@@ -42,7 +42,7 @@ exports.createTodo = async (req, res) => {
         const todo = new Todo({
             title,
             description,
-            user
+            user: req.user.id
         });
 
         // Save the to-do item to the database
