@@ -20,7 +20,7 @@ const authMiddleware = async (req, res, next) => {
     }
 
     // Verify the token and get the user ID
-    const decoded = await promisify(jwt.verify)(token, config.secretKey);
+    const decoded = await promisify(jwt.verify)(token, process.env.secretKey);
     const userId = decoded;
 
     // Set the user ID on the request object
