@@ -36,13 +36,13 @@ exports.getTodoById = async (req, res) => {
 // Create a new to-do item
 exports.createTodo = async (req, res) => {
   try {
-        const { title, description } = req.body;
-console.log(req.body);
+        const { title, description, user } = req.body;
+    
         // Create a new to-do item
         const todo = new Todo({
             title,
             description,
-            user: req.user.id
+            user
         });
 
         // Save the to-do item to the database

@@ -18,7 +18,7 @@ export const loginUser  = async (email, password) => {
             password,
         });
 
-        console.log(response);
+        console.log(response.data);
         return {data: response.data};
         } catch (err) {
         return {error: err.response.data.error};
@@ -56,7 +56,8 @@ export const getAllTodos = async () => {
     }
 };
 
-export const createTodo = async (title, description, user) => {
+export const createTodo = async (title, description, id) => {
+    console.log(id);
     const response = await fetch(`${API_BASE_URL}`, {
         method: 'POST',
         headers: {
@@ -66,6 +67,7 @@ export const createTodo = async (title, description, user) => {
         body: JSON.stringify({
             title,
             description,
+            user: id
 
         }),
     });

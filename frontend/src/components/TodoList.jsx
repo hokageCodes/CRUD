@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { getAllTodos, createTodo, updateTodo, deleteTodo } from '../api';
+import { useAuth } from '../Provider/AuthProvider';
 
 const TodoList = () => {
     const [todos, setTodos] = useState([]);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
+    const { currentUser, error, setError } = useAuth();
 
     const loadTodos = async () => {
         try {
@@ -22,7 +24,8 @@ const TodoList = () => {
     const handleCreateTodo = async (event) => {
         event.preventDefault();
         try {
-            const newTodo = await createTodo(title, description);
+            console.log(title, description, currentUser.id);
+            const newTodo = await createTodo(title, description, currentUser.id);
             setTodos([...todos, newTodo]);
             setTitle('');
             setDescription('');

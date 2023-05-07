@@ -21,7 +21,8 @@ router.post(
     [
         [
             check("title", "Title is required").not().isEmpty(),
-            check("description", "Description is required").not().isEmpty()
+            check("description", "Description is required").not().isEmpty(),
+            check("user", "User id is required").not().isEmpty(),
         ]
     ],
     todoController.createTodo

@@ -10,7 +10,7 @@ export function useAuth() {
 
 export function AuthProvider({ children }) {
   const navigate  = useNavigate();
-    const [currentUser, setCurrentUser] = useState();
+    const [currentUser, setCurrentUser] = useState(JSON.parse(localStorage.getItem('user')));
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState();
     const  signup = async (email, password) => {
@@ -18,6 +18,7 @@ export function AuthProvider({ children }) {
       const response = await registerUser(email, password);
       if(response.data){ 
         setLoading(false);
+        localStorage.setItem('user', JSON.stringify(response.data))
         return setCurrentUser(response.data);}
         setLoading(false);
      return setError({error: response.error});
@@ -25,23 +26,18 @@ export function AuthProvider({ children }) {
   
     const login = async (email, password) => {
       const response = await loginUser(email, password);
-      if(response.data) { return setCurrentUser(response.data)}
+      if(response.data) { 
+        localStorage.setItem('user', JSON.stringify(response.data))
+        return setCurrentUser(response.data)}
       return setError({error: response.error})
     }
   useEffect(()=> {
-    if(!currentUser){
-      navigate('/login')
-    }
-  })
-  useEffect(()=> {
     console.log('location',location.href.split('/').pop())
-    console.log(currentUser)
     if(currentUser && location.href.split('/').pop() === 'login'){
       navigate('/')
     }
-  },[currentUser, navigate])
+  })
 
-  
     const value = {
       currentUser,
       login,
