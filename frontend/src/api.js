@@ -1,4 +1,5 @@
 const API_BASE_URL = 'http://localhost:5000/api/todos';
+import axios from 'axios';
 
 const getToken = () => {
     const token = localStorage.getItem('authToken');
@@ -8,6 +9,39 @@ const getToken = () => {
         return '';
     }
 };
+
+export const loginUser  = async (email, password) => { 
+
+    try {
+              const response = await axios.post('http://localhost:5000/api/auth/login', {
+            email,
+            password,
+        });
+
+        console.log(response);
+        return {data: response.data};
+        } catch (err) {
+        return {error: err.response.data.error};
+        }
+}
+
+export const registerUser= async (email, password, name) => {
+    try {
+        const response = await fetch('http://localhost:5000/api/auth/signup', {
+        method:  'POST',
+        body: JSON.stringify({
+            email,
+            password,
+            name
+        }),
+    },);
+
+        console.log(response.data);
+        return {data: response.data};
+        } catch (err) {
+        return {error: err.response.data.error};
+        }
+}
 
 export const getAllTodos = async () => {
     const response = await fetch(`${API_BASE_URL}`, {
@@ -22,7 +56,7 @@ export const getAllTodos = async () => {
     }
 };
 
-export const createTodo = async (title, description) => {
+export const createTodo = async (title, description, user) => {
     const response = await fetch(`${API_BASE_URL}`, {
         method: 'POST',
         headers: {
@@ -32,6 +66,7 @@ export const createTodo = async (title, description) => {
         body: JSON.stringify({
             title,
             description,
+
         }),
     });
     if (response.ok) {

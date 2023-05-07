@@ -1,27 +1,31 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+
 import '../App.css'
+import { useAuth } from '../Provider/AuthProvider';
 
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
+    // const [error, setError] = useState('');
+    const { currentUser, login, signup, error, setError } = useAuth();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        try {
-        const response = await axios.post('http://localhost:5000/api/auth/login', {
-            email,
-            password,
-        });
-
-        console.log(response.data);
-        } catch (err) {
-        setError(err.response.data.error);
+        if(email && password) {
+            await login(email, password);
         }
+        // try {
+        // const response = await axios.post('http://localhost:5000/api/auth/login', {
+        //     email,
+        //     password,
+        // });
+
+        // console.log(response.data);
+        // } catch (err) {
+        // setError(err.response.data.error);
+        // }
     };
 
     return (

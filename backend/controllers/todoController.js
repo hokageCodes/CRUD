@@ -37,7 +37,7 @@ exports.getTodoById = async (req, res) => {
 exports.createTodo = async (req, res) => {
   try {
         const { title, description } = req.body;
-
+console.log(req.body);
         // Create a new to-do item
         const todo = new Todo({
             title,
