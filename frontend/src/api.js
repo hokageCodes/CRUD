@@ -18,7 +18,6 @@ export const loginUser  = async (email, password) => {
             password,
         });
 
-        console.log(response.data);
         return {data: response.data};
         } catch (err) {
         return {error: err.response.data.error};
@@ -26,18 +25,20 @@ export const loginUser  = async (email, password) => {
 }
 
 export const registerUser= async (email, password, name) => {
+    console.log(email, password, name)
     try {
-        const response = await fetch('http://localhost:5000/api/auth/signup', {
-        method:  'POST',
-        body: JSON.stringify({
+        const response = await axios.post('http://localhost:5000/api/auth/signup', {
             email,
             password,
             name
-        }),
-    },);
+        },
+    );
 
-        console.log(response.data);
+        console.log(response?.data);
+        if(response.data)
         return {data: response.data};
+
+        return {error: response.error};
         } catch (err) {
         return {error: err.response.data.error};
         }
@@ -50,20 +51,18 @@ export const getAllTodos = async () => {
             Authorization: getToken(),
         },
     });
-    console.log('dd', response.ok)
     if (response.ok) {
         return await response.json();
     } else {
         throw new Error('Error retrieving todos');
     }
 }catch(error) {
-    console.log(error);
+    console.log(JSON.stringify(error));
     throw new Error('Error retrieving todos');
 }
 };
 
-export const createTodo = async (title, description, id) => {
-    console.log(id);
+export const createTodo = async (title, description) => {
     const response = await fetch(`${API_BASE_URL}`, {
         method: 'POST',
         headers: {
@@ -73,7 +72,6 @@ export const createTodo = async (title, description, id) => {
         body: JSON.stringify({
             title,
             description,
-            user: id
 
         }),
     });

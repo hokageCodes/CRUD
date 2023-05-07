@@ -7,8 +7,9 @@ const jwt = require("jsonwebtoken");
 // Register a new user and generate a JWT token
 exports.signup = async (req, res) => {
   try {
+    console.log(req.body);
     const { name, email, password } = req.body;
-
+    console.log(name, email, password);
     // Check if user already exists
     let user = await User.findOne({ email });
     if (user) {

@@ -14,10 +14,11 @@ export function AuthProvider({ children }) {
     const [currentUser, setCurrentUser] = useState(JSON.parse(localStorage.getItem('user')));
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState();
-    const  signup = async (email, password) => {
+    const  signup = async (email, password, name) => {
         setLoading(true);
-      const response = await registerUser(email, password);
-      if(response.data){ 
+      const response = await registerUser(email, password,name);
+
+      if(response?.data){ 
         setLoading(false);
         localStorage.setItem('user', JSON.stringify(response.data))
         return setCurrentUser(response.data);}
@@ -32,12 +33,17 @@ export function AuthProvider({ children }) {
         return setCurrentUser(response.data)}
       return setError({error: response.error})
     }
+
+    const logout = () =>
+    {
+      localStorage.clear();
+    }
   useEffect(()=> {
     console.log('location',location.href.split('/').pop())
-    if(currentUser && location.href.split('/').pop() === 'login'){
+    if(currentUser && ['login', 'signup'].indexOf(location.href.split('/').pop()) != -1){
       navigate('/')
     }
-    if(!currentUser && location.href.split('/').pop() !== 'login'){
+    if(!currentUser && location.href.split('/').pop() !== 'login' && location.href.split('/').pop() !== 'signup'){
       navigate('/login');
     }
   })
@@ -46,6 +52,7 @@ export function AuthProvider({ children }) {
       currentUser,
       login,
       signup,
+      logout,
       error,
     };
   

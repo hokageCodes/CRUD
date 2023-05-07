@@ -1,6 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import '../App.css'
 import { useAuth } from '../Provider/AuthProvider';
 
@@ -9,23 +8,23 @@ const SignupPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-const { signup} = useAuth()
+const { signup, logout} = useAuth()
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log(email, password, name)
+    if(email && password && name){
     await signup(email, password, name);
-
-    //   const response = await axios.post('http://localhost:5000/api/auth/signup', {
-    //     name,
-    //     email,
-    //     password,
-    //   });
-
-    //   console.log(response.data);
+    }else{
+      console.log(email, password,name);
+    }
     } catch (err) {
       setError(err.response.data.error);
     }
   };
+  // useEffect(() =>{
+  //   logout();
+  // })
 
   return (
     <div>
