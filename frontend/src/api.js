@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://crud-production-d540.up.railway.app';
+const API_BASE_URL = 'https://crud-production-6abd.up.railway.app';
 import axios from 'axios';
 
 const getToken = () => {
@@ -46,7 +46,7 @@ export const registerUser= async (email, password, name) => {
 
 export const getAllTodos = async () => {
    try{
-    const response = await fetch(`${API_BASE_URL}`, {
+    const response = await fetch(`${API_BASE_URL}/api/todos`, {
         headers: {
             Authorization: getToken(),
         },
@@ -63,7 +63,7 @@ export const getAllTodos = async () => {
 };
 
 export const createTodo = async (title, description) => {
-    const response = await fetch(`${API_BASE_URL}`, {
+    const response = await fetch(`${API_BASE_URL}/api/todos`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -83,7 +83,7 @@ export const createTodo = async (title, description) => {
 };
 
 export const updateTodo = async (id, title, description) => {
-    const response = await fetch(`${API_BASE_URL}/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/api/todos/${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -102,7 +102,7 @@ export const updateTodo = async (id, title, description) => {
 };
 
 export const deleteTodo = async (id) => {
-    const response = await fetch(`${API_BASE_URL}/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/api/todos/${id}`, {
         method: 'DELETE',
         headers: {
             Authorization: getToken(),
