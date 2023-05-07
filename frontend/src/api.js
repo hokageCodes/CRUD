@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:5000/api/todos';
+const API_BASE_URL = 'https://crud-production-d540.up.railway.app';
 import axios from 'axios';
 
 const getToken = () => {
@@ -13,7 +13,7 @@ const getToken = () => {
 export const loginUser  = async (email, password) => { 
 
     try {
-              const response = await axios.post('http://localhost:5000/api/auth/login', {
+            const response = await axios.post(`${API_BASE_URL}/api/auth/login`, {
             email,
             password,
         });
@@ -27,7 +27,7 @@ export const loginUser  = async (email, password) => {
 export const registerUser= async (email, password, name) => {
     console.log(email, password, name)
     try {
-        const response = await axios.post('http://localhost:5000/api/auth/signup', {
+        const response = await axios.post(`${API_BASE_URL}/api/auth/signup`, {
             email,
             password,
             name

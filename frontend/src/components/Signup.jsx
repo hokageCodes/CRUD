@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css'
 import { useAuth } from '../Provider/AuthProvider';
@@ -8,7 +8,7 @@ const SignupPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-const { signup, logout} = useAuth()
+const { signup } = useAuth()
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
