@@ -1,9 +1,6 @@
-// routes/todos.js
-
 const express = require("express");
 const router = express.Router();
 const { check } = require("express-validator");
-// const authMiddleware = require("../middleware/authMiddleware");
 const todoController = require("../controllers/todoController");
 
 // @route    GET api/todos
