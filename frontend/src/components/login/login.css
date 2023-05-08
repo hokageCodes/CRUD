@@ -1,0 +1,82 @@
+/* Mobile Styles */
+.Login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.Login h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.Login form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.Login label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.Login input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+}
+
+.Login button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.Login p {
+    font-size: 16px;
+}
+
+.Login a {
+    color: #4caf50;
+}
+
+/* Tablet Styles */
+@media screen and (min-width: 414px) {
+    .Login {
+        max-width: 375px;
+        margin: 0 auto;
+        text-align: center;
+    }
+}
+
+/* Desktop Styles */
+@media screen and (min-width: 768px) {
+    .Login {
+        max-width: 600px;
+        margin: 0 auto;
+        text-align: center;
+    }
+}

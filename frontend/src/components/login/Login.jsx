@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-
-import '../App.css'
-import { useAuth } from '../Provider/AuthProvider';
+import './login.css'
+import { useAuth } from '../../Provider/AuthProvider';
 
 
 const Login = () => {
@@ -29,7 +28,7 @@ const Login = () => {
     };
 
     return (
-        <div>
+        <div className="Login">
             <h2>Login</h2>
             {error && <p>{error}</p>}
             <form onSubmit={handleSubmit}>

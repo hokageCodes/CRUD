@@ -1,0 +1,96 @@
+.todolist-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .todolist-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .todolist-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  .todolist-input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .todolist-btn {
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .todolist-btn:hover {
+    background-color: #0062cc;
+  }
+  
+  .todolist-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .todolist-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .todolist-item input {
+    margin-bottom: 10px;
+  }
+  
+  .todolist-delete-btn {
+    padding: 10px;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .todolist-delete-btn:hover {
+    background-color: #c82333;
+  }
+  
+  @media screen and (max-width: 767px) {
+    .todolist-container {
+      padding: 10px;
+    }
+  
+    .todolist-title {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+  
+    .todolist-item {
+      margin-bottom: 10px;
+    }
+  
+    .todolist-input,
+    .todolist-btn,
+    .todolist-delete-btn {
+      padding: 8px;
+      font-size: 0.9rem;
+    }
+  }
+  

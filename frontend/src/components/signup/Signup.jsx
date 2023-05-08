@@ -1,7 +1,6 @@
 import {  useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../App.css'
-import { useAuth } from '../Provider/AuthProvider';
+import { useAuth } from '../../Provider/AuthProvider';
 
 const SignupPage = () => {
   const [name, setName] = useState('');
@@ -27,7 +26,7 @@ const { signup } = useAuth()
   // })
 
   return (
-    <div>
+    <div className='Login'>
       <h2>Signup</h2>
       {error && <p>{error}</p>}
       <form onSubmit={handleSubmit}>
